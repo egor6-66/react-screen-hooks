@@ -13,7 +13,7 @@ function ConfigMediaQuery<T, K extends keyof T>(props: Props<T>) {
         const getCurrent = () => {
             const bp = Object.entries(widthBreakpoints)
                 .reverse()
-                .find(([key, value]: any) => value < width);
+                .find(([key, value]: any) => value <= width);
             return bp ? bp[0] : undefined;
         };
 
@@ -22,13 +22,13 @@ function ConfigMediaQuery<T, K extends keyof T>(props: Props<T>) {
         };
 
         const from = (from: K): boolean => {
-            return widthBreakpoints[from] < width;
+            return widthBreakpoints[from] <= width;
         };
         const to = (to: K): boolean => {
-            return widthBreakpoints[to] > width;
+            return widthBreakpoints[to] >= width;
         };
         const fromTo = (from: K, to: K): boolean => {
-            return widthBreakpoints[from] < width && widthBreakpoints[to] > width;
+            return widthBreakpoints[from] <= width && widthBreakpoints[to] >= width;
         };
 
         return { getCurrent, only, from, to, fromTo };
@@ -39,7 +39,7 @@ function ConfigMediaQuery<T, K extends keyof T>(props: Props<T>) {
         const getCurrent = () => {
             const bp = Object.entries(heightBreakpoints)
                 .reverse()
-                .find(([key, value]: any) => value < height);
+                .find(([key, value]: any) => value <= height);
             return bp ? bp[0] : undefined;
         };
 
@@ -48,13 +48,13 @@ function ConfigMediaQuery<T, K extends keyof T>(props: Props<T>) {
         };
 
         const from = (from: K): boolean => {
-            return heightBreakpoints[from] < height;
+            return heightBreakpoints[from] <= height;
         };
         const to = (to: K): boolean => {
-            return heightBreakpoints[to] > height;
+            return heightBreakpoints[to] >= height;
         };
         const fromTo = (from: K, to: K): boolean => {
-            return heightBreakpoints[from] < height && heightBreakpoints[to] > height;
+            return heightBreakpoints[from] <= height && heightBreakpoints[to] >= height;
         };
 
         return { getCurrent, only, from, to, fromTo };
