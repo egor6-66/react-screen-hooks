@@ -3,4 +3,4 @@ import configMediaQuery from './bin/useMediaQuery';
 import useResizeObserver from './bin/useResizeObserver';
 import useWindowSizeObserver from './bin/useWindowSizeObserver';
 
-export { configMediaQuery, useElementSizeObserver, useResizeObserver, useWindowSizeObserver };
+export { useResizeObserver, useWindowSizeObserver, useElementSizeObserver, configMediaQuery };

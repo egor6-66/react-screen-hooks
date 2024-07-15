@@ -29,6 +29,7 @@ function App() {
 
   useResizeObserver({
     ref,
+    debounceDelay: 2000,
     onResize: (size) => {
       console.log(size);
     },
@@ -42,12 +43,14 @@ function App() {
 }
 ```
 ### useWindowSizeObserver
-**useWindowSizeObserver returns the size of the element, you can pass a realtime parameter, defaults to true.**
+**useWindowSizeObserver returns the size of the element, you can pass a realtime parameter, defaults to true and debounce.**
 ```jsx
 import { useWindowSizeObserver } from 'react-screen-hooks';
 
 function App() {
-  const { width, height } = useWindowSizeObserver();
+  const { width, height } = useWindowSizeObserver({
+    debounce: 2000
+  });
 
   console.log(width, height);
 
@@ -55,12 +58,14 @@ function App() {
 }
 ```
 ### useElementSizeObserver
-**useWindowSizeObserver returns the window size, you can pass  realtime parameter, by default true.**
+**useWindowSizeObserver returns the window size, you can pass  realtime parameter, by default true and debounce.**
 ```jsx
 import { useElementSizeObserver } from 'react-screen-hooks';
 
 function App() {
-  const [ref, size] = useElementSizeObserver();
+  const [ref, size] = useElementSizeObserver({
+    debounce: 2000
+  });
 
   console.log(size.width, size.height);
 

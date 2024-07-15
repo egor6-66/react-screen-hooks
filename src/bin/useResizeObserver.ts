@@ -1,16 +1,27 @@
 import { RefObject } from 'react';
 
 import { Size } from './types';
-import { useEffectOnce } from './utils';
+import { debounce, useEffectOnce } from './utils';
 
 type Props = {
     ref?: RefObject<any>;
     onResize: (size: Size) => void;
     watch?: 'width' | 'height' | 'all';
+    debounceDelay?: number;
 };
 
 function useResizeObserver(props: Props) {
     const { ref, onResize, watch = 'all' } = props;
+
+    const processChange = debounce((size: Size) => onResize(size), props?.debounceDelay);
+
+    const updater = ({ width, height }: Size) => {
+        if (props?.debounceDelay) {
+            processChange({ width: Math.ceil(width), height: Math.ceil(height) });
+        } else {
+            onResize({ width: Math.ceil(width), height: Math.ceil(height) });
+        }
+    };
 
     useEffectOnce(() => {
         const prevSize: Size = { width: 0, height: 0 };
@@ -20,23 +31,21 @@ function useResizeObserver(props: Props) {
 
             if (watch === 'width') {
                 if (prevSize?.width !== width) {
-                    onResize({ width: Math.ceil(width), height: Math.ceil(height) });
+                    updater({ width, height });
                     prevSize.width = width;
                     prevSize.height = height;
                 }
             }
-
             if (watch === 'height') {
                 if (prevSize?.height !== height) {
-                    onResize({ width: Math.ceil(width), height: Math.ceil(height) });
+                    updater({ width, height });
                     prevSize.width = width;
                     prevSize.height = height;
                 }
             }
-
             if (watch === 'all') {
                 if (prevSize?.width !== width || prevSize?.height !== height) {
-                    onResize({ width: Math.ceil(width), height: Math.ceil(height) });
+                    updater({ width, height });
                     prevSize.width = width;
                     prevSize.height = height;
                 }
