@@ -1,6 +1,6 @@
-import useDimensionsObserver from './bin/useDimensionsObserver';
-import useElementDimensions from './bin/useElementDimensions';
-import ConfigMediaQuery from './bin/useMediaQuery';
-import useWindowDimensions from './bin/useWindowDimensions';
+import useElementSizeObserver from './bin/useElementSizeObserver';
+import configMediaQuery from './bin/useMediaQuery';
+import useResizeObserver from './bin/useResizeObserver';
+import useWindowSizeObserver from './bin/useWindowSizeObserver';
 
-export { useDimensionsObserver, useElementDimensions, ConfigMediaQuery, useWindowDimensions };
+export { configMediaQuery, useElementSizeObserver, useResizeObserver, useWindowSizeObserver };

@@ -7,7 +7,7 @@ type Size = {
     height: number;
 };
 
-function useWindowDimensions(realTime = true): Size {
+function useWindowSizeObserver(realTime = true): Size {
     const [windowDimensions, setWindowDimensions] = useState<Size>(getWindowDimensions());
 
     function handleWindowResize() {
@@ -19,8 +19,10 @@ function useWindowDimensions(realTime = true): Size {
             window.addEventListener('resize', handleWindowResize);
         } else {
             const { width, height } = window.screen;
+
             setWindowDimensions({ width, height });
         }
+
         return () => window.removeEventListener('resize', handleWindowResize);
     });
 
@@ -30,4 +32,4 @@ function useWindowDimensions(realTime = true): Size {
     };
 }
 
-export default useWindowDimensions;
+export default useWindowSizeObserver;
