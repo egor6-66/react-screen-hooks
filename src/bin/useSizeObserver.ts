@@ -10,7 +10,7 @@ type Props = {
     debounceDelay?: number;
 };
 
-function useResizeObserver(props: Props) {
+function useSizeObserver(props: Props) {
     const { ref, onResize, watch = 'all' } = props;
 
     const processChange = debounce((size: Size) => onResize(size), props?.debounceDelay);
@@ -56,4 +56,4 @@ function useResizeObserver(props: Props) {
     return null;
 }
 
-export default useResizeObserver;
+export default useSizeObserver;

@@ -19,15 +19,15 @@ npm i react-screen-hooks
 ```
 
 ## 💻 Example 
-### useElementSizeObserver
-**useElementSizeObserver is used to monitor the size of the element, the watch parameter determines at what change onResize will fire, the default observer for all, can be configured for width only or height only. If you do not pass the ref, the dimensions of the body tag will be returned.**
+### useSizeObserver
+**useSizeObserver is used to monitor the size of the element, the watch parameter determines at what change onResize will fire, the default observer for all, can be configured for width only or height only. If you do not pass the ref, the dimensions of the body tag will be returned.**
 ```jsx
-import { useResizeObserver } from 'react-screen-hooks';
+import { useSizeObserver } from 'react-screen-hooks';
 
 function App() {
   const ref = useRef<HTMLDivElement | null>(null);
 
-  useResizeObserver({
+  useSizeObserver({
     ref,
     debounceDelay: 2000,
     onResize: (size) => {
@@ -58,7 +58,7 @@ function App() {
 }
 ```
 ### useElementSizeObserver
-**useWindowSizeObserver returns the window size, you can pass  realtime parameter, by default true and debounce.**
+**useElementSizeObserver returns the window size, you can pass  realtime parameter, by default true and debounce.**
 ```jsx
 import { useElementSizeObserver } from 'react-screen-hooks';
 
