@@ -13,7 +13,7 @@ type Props = {
 function useSizeObserver(props: Props) {
     const { ref, onResize, watch = 'all' } = props;
 
-    const processChange = debounce((size: Size) => onResize(size), props?.debounceDelay);
+    const processChange: any = debounce((size: Size) => onResize(size), props?.debounceDelay);
 
     const updater = ({ width, height }: Size) => {
         if (props?.debounceDelay) {
@@ -36,6 +36,7 @@ function useSizeObserver(props: Props) {
                     prevSize.height = height;
                 }
             }
+
             if (watch === 'height') {
                 if (prevSize?.height !== height) {
                     updater({ width, height });
@@ -43,6 +44,7 @@ function useSizeObserver(props: Props) {
                     prevSize.height = height;
                 }
             }
+
             if (watch === 'all') {
                 if (prevSize?.width !== width || prevSize?.height !== height) {
                     updater({ width, height });
@@ -52,8 +54,6 @@ function useSizeObserver(props: Props) {
             }
         }).observe(ref?.current || document.body);
     });
-
-    return null;
 }
 
 export default useSizeObserver;

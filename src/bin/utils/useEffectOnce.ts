@@ -6,6 +6,7 @@ const useEffectOnce = (effect: EffectCallback) => {
         if (!once.current) {
             effect();
         }
+
         once.current = true;
     }, []);
 };

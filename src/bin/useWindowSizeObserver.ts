@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { Size } from './types';
-import { getWindowDimensions, useEffectOnce, debounce } from './utils';
+import { debounce, getWindowDimensions, useEffectOnce } from './utils';
 
 type Props = {
     realTime?: boolean;
@@ -28,6 +28,7 @@ function useWindowSizeObserver(props?: Props): Size {
             const { width, height } = window.screen;
             setWindowDimensions({ width, height });
         }
+
         return () => window.removeEventListener('resize', handleWindowResize);
     });
 
